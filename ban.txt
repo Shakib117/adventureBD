@@ -1,0 +1,31 @@
+<div class="dis-banner">
+	
+		
+		<?php $csql = "SELECT * from cupon order by rand(id)  asc limit 1";
+				$cquery = $dbh->prepare($csql );
+				$cquery->execute();
+				$cresults=$cquery->fetchAll(PDO::FETCH_OBJ);
+				$cnt=1;
+				if($cquery->rowCount() > 0)
+				{
+				foreach($cresults as $cresults)
+				{	?>
+	
+	
+	
+		<div class="dis-contain">
+			<h2> <?php echo htmlentities($cresults->title);?></h4>
+			<h3><?php echo htmlentities($cresults->subtitle);?></h3>
+			<?php if($_SESSION['login']){
+			?>
+			<p>Cupon code:<?php echo htmlentities($cresults->code);?></p>
+			<?php }else{ ?>
+			<p>Cupon code:<a href="#" data-toggle="modal" data-target="#myModal4" > Sign In</a></p>
+			<?php }?>
+		</div>
+		
+		<?php }} ?>
+	    
+	
+	
+	</div>
